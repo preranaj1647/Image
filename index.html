@@ -49,13 +49,27 @@
     <button onclick="copyText(text14)">Imageaveraging Addition</button>
     <button onclick="copyText(text15)">Imagesubtr</button>
     <button onclick="copyText(text16)">Medianfiltering</button>
-    <button onclick="copyText(text17)">ErosionDilation</button>
-    <button onclick="copyText(text18)"></button>
-    <button onclick="copyText(text19)"></button>
-    <button onclick="copyText(text20)"></button>
-    <button onclick="copyText(text21)"></button>
-    <button onclick="copyText(text22)"></button>
+    <button onclick="copyText(text17)">Erosion&Dilation</button>
+    <button onclick="copyText(text18)">Opening&Closing</button>
+    <button onclick="copyText(text19)">BoundaryExtr</button>
+    <button onclick="copyText(text20)">Morphgradient</button>
+    <button onclick="copyText(text21)">Top-hattransf</button>
+    <button onclick="copyText(text22)">Regionfilling</button>
+    <button onclick="copyText(text23)">ReadWritedisp</button>
+    <button onclick="copyText(text24)">PixelValue</button>
+    <button onclick="copyText(text25)">RetrHeigWeid</button>
+    <button onclick="copyText(text26)">Textonimag</button>
+    <button onclick="copyText(text27)">Rectangleonimg</button>
+    <button onclick="copyText(text28)">RGB</button>
+    <button onclick="copyText(text29)">1Colrtoanother</button>
+    <button onclick="copyText(text30)">Pseudofalse</button>
+
+
+
     
+
+
+
 
     <p id="copiedMsg"></p>
 
@@ -435,9 +449,311 @@ title('Original Image');
 subplot(1,2,2);
 imshow(erosion);
 title('Eroded Image');
+
+a=imread("E:\PRERANA\MSc-IT\IP\erodee.jpg");
+
+se=imcreatese('ellipse',10,10);
+dilation=imdilate(a,se);
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(dilation);
+title('dilated Image');
+
 `;
-        
-        
+    const text18 = `clc; clear all; disp("Opening&Closing"); clc;
+    clc;
+clear all;
+a=imread("E:\PRERANA\MSc-IT\IP\im.jpg");
+se=imcreatese('ellipse',30,30);
+erosion=imerode(a,se);
+opening=imdilate(erosion,se)
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(opening);
+title('opening Image');
+
+
+a=imread("E:\PRERANA\MSc-IT\IP\imm.jpg");
+
+se=imcreatese('ellipse',30,30);
+dilation=imdilate(a,se);
+closing=imerode(dilation,se);
+
+subplot(1,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(1,2,2);
+imshow(closing);
+title('Closing Image');
+
+`;
+        const text19 = `clc; clear all; disp("Opening&Closing"); clc;
+        a=imread("E:\PRERANA\MSc-IT\IP\img9.jpg");
+
+se=imcreatese('ellipse',10,10);
+erosion=imerode(a,se);
+
+Boundary=a-erosion
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(erosion);
+title('eroded Image');
+
+subplot(2,2,3);
+imshow(Boundary);
+title('Boundary Image');
+
+`;
+          const text20 = `clc; clear all; disp("Morphological Gradient"); clc;
+          a=imread("E:\PRERANA\MSc-IT\IP\mg.jpg");
+
+se=imcreatese('rect',30,30);
+dilation=imdilate(a,se);
+erosion=imerode(a,se);
+
+gradient=dilation-erosion
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(dilation);
+title('dilated Image');
+
+subplot(2,2,3);
+
+imshow(erosion);
+title('erosion image');
+
+subplot(2,2,4);
+imshow(gradient);
+title('gradient image');
+
+`;
+          const text21 = `clc; clear all; disp("Top-Hat Transf"); clc;
+          a=imread("E:\PRERANA\MSc-IT\IP\tophat.jpg");
+
+se=imcreatese('ellipse',30,30);
+erosion=imerode(a,se);
+opening=imdilate(erosion,se)
+
+tophat=a-opening
+
+subplot(2,2,1);
+imshow(a);
+title('Original Image');
+
+subplot(2,2,2);
+imshow(opening);
+title('opening Image');
+
+subplot(2,2,3);
+imshow(tophat);
+title('tophat Image');
+
+`;
+         const text22 = `clc; clear all; disp("Regionfilling"); clc;
+         S=imread(fullpath(getIPCVpath()+"/images/"+'coins_gray.jpg'));
+subplot(1,3,1);
+imshow(S);
+Sbin=im2bw(~S,0.5);
+
+subplot(1,3,2);
+imshow(Sbin);
+Sfill=imfill(Sbin);
+
+subplot(1,3,3);
+imshow(Sfill);
+`;
+         const text23 = `clc; clear all; disp("ReadWriteDisplay"); clc;
+         import cv2
+import numpy as np
+
+img=cv2.imread(“ .jpeg”);
+cv2.imshow(‘image’,img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+         const text24 = `clc; clear all; disp("PixelValue"); clc;
+         import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+cv2.imshow('Image', img)  # Display the image
+cv2.waitKey(0)  # Wait for a key press
+cv2.destroyAllWindows()  # Close the display window
+pixel = img[100,100]
+print(pixel)
+`;
+        const text25 = `clc; clear all; disp("PixelValue"); clc;
+        import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+height=img.shape[0]
+width=img.shape[1]
+channels=img.shape[2]
+size1=img.size
+print('Image Height:',height)
+print('Image Width:',width)
+print('Image Channels:',channels)
+print('Image Size:',size1)
+`;
+         const text26 = `clc; clear all; disp("PixelValue"); clc;
+         import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+font=cv2.FONT_HERSHEY_SIMPLEX
+cv2.putText(img,'Hello',(100,100),font,1,(0,255,0))
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+        const text27 = `clc; clear all; disp("RectangleonImage"); clc;
+        import cv2
+import numpy as np
+
+img = cv2.imread("E:\\PRERANA\\MSc-IT\\IP\\image1.jpg")  
+
+cv2.rectangle(img,(15,25),(200,150),(0,0,0),15)
+cv2.imshow('image',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+`;
+        const text28 = `clc; clear all; disp("RectangleonImage"); clc;
+        clc;
+clear all;
+I=imread('E:\PRERANA\MSc-IT\IP\8a.jpg');
+
+//rows and columns in the image
+r=size(I,1);
+c=size(I,2);
+
+//creating zero matrices
+R=zeros(r,c,3);
+G=zeros(r,c,3);
+B=zeros(r,c,3);
+
+//storing corresponding color plane
+//red plane
+R(:,:,1)=I(:,:,1);
+
+//blue plane
+G(:,:,2)=I(:,:,2);
+
+//blue plane
+B(:,:,3)=I(:,:,3);
+
+subplot(2,2,1);
+
+subplot(2,2,2);
+imshow(uint8(R));
+title('Red Component');
+
+subplot(2,2,3);
+imshow(uint8(G));
+title('Green Component');
+
+subplot(2,2,4);
+imshow(uint8(B));
+title('Blue Component');
+
+`;
+        const text29 = `clc; clear all; disp("RectangleonImage"); clc;
+        a. RGB to HSV
+Code:
+rgb=imread(fullpath(getIPCVpath()+"/images/"+'peppers.png'));
+hsv=rgb2hsv(rgb);
+
+subplot(2,3,1);
+imshow(rgb);
+title('Original RGB image');
+
+subplot(2,3,2);
+imshow(hsv);
+title('HSV Image');
+
+subplot(2,3,3);
+imshow(hsv(:,:,3));
+title('Intensity Component');
+
+subplot(2,3,4);
+imshow(hsv(:,:,1));
+title('Hue Component');
+
+subplot(2,3,5);
+imshow(hsv(:,:,2));
+title('Saturation Component');
+
+b. RGB to YCBCR
+Code:
+clc;
+clear all;
+rgb=imread("C:\Program Files\scilab-6.0.2\IPCV\images\balloons.png");
+ycbcr=rgb2ycbcr(rgb);
+
+subplot(2,3,1);
+imshow(rgb);
+title('Original RGB image');
+
+subplot(2,3,2);
+imshow(ycbcr);
+title('YCBCR Image');
+
+subplot(2,3,3);
+imshow(ycbcr(:,:,1));
+title('Luminance');
+
+subplot(2,3,4);
+imshow(ycbcr(:,:,2));
+title('Chrominance Cb');
+
+subplot(2,3,5);
+imshow(ycbcr(:,:,3));
+title('Chrominance Cr');
+
+`;
+        const text30 = `clc; clear all; disp("RectangleonImage"); clc;
+        clc;
+clear;
+RGB=imread(‘E:\PRERANA\MSc-IT\IP\8a.jpg’);
+Image=rgb2gray(RGB);
+
+subplot(1,3,1);
+imshow(RGB);
+title('Original RGB Image');
+
+subplot(1,3,2);
+imshow(Image);
+title('Gray RGB Image');
+
+subplot(1,3,3);
+imshow(Image.jetcolormap(256));
+title('Pseudo Color Image');
+
+Histogram=imhist(Image);
+figure();
+plot(0:255,Histogram);
+
+`;
 
         // Function to copy text
         function copyText(text) {
