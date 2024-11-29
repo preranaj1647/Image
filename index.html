@@ -28,6 +28,12 @@
         button:hover {
             background-color: #ccc;
         }
+
+        #copiedMsg {
+            color: green;
+            font-size: 14px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -755,19 +761,26 @@ plot(0:255,Histogram);
 
 `;
 
-        // Function to copy text
+      // Function to copy text to the clipboard
         function copyText(text) {
-            navigator.clipboard.writeText(text).then(function () {
-                const msg = document.getElementById('copiedMsg');
-                msg.innerHTML = "Text Copied!";
-                setTimeout(() => {
-                    msg.innerHTML = "";
-                }, 3000); // Clears the message after 3 seconds
-            }).catch(function (err) {
-                console.error('Unable to copy text', err);
-            });
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = text; // Assign the text to the textarea
+            document.body.appendChild(textarea); // Append to the DOM
+            textarea.select(); // Select the text
+            textarea.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                document.execCommand('copy'); // Copy text to clipboard
+                document.getElementById("copiedMsg").innerText = "Code copied successfully!";
+            } catch (err) {
+                document.getElementById("copiedMsg").innerText = "Failed to copy text.";
+            }
+
+            document.body.removeChild(textarea); // Remove the textarea
         }
     </script>
+
 </body>
 
 </html>
